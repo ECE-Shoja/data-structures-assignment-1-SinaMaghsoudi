@@ -4,15 +4,15 @@ using namespace std;
 vector<int> parent, sz;
 
 int findSet(int v) {
-    if(parent[v] == v) return v;
-    return parent[v] = findset(parent[v]);
+    if(v == parent[v]) return v;
+    return parent[v] = findSet(parent[v]);
 }
 
 void unionSet(int a, int b) {
-    a = findset(parent[a]);
-    b = findset(parent[b]);
-    if(a != b){
-        if(sz[a] < sz[b]) swap(a, b);
+    a = findSet(a);
+    b = findSet(b);
+    if (a != b) {
+        if (sz[a] < sz[b]) swap(a, b);
         parent[b] = a;
         sz[a] += sz[b];
     }
